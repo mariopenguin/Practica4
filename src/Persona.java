@@ -48,6 +48,6 @@ public class Persona {
     }
 
     public void mostrarPersona(){
-        System.out.println(this.nombre+" "+this.telefono+" "+this.direccion);
+        System.out.println(this.nombre+" "+"("+this.telefono+") "+this.direccion);
     }
 }

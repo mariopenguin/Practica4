@@ -168,6 +168,9 @@ public class GramETSISI {
             }
             System.out.println();
         }
+        for (int i = 0; i < numVertices; i++) {
+            contactos[i].mostrarPersona();
+        }
     }
 }
 	  

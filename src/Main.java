@@ -28,5 +28,7 @@ public class Main {
         //gramETSISI.mostrarAmigos("b");
         gramETSISI.mayorGrupo();
         System.out.println("Numero de grupos: "+gramETSISI.contarGrupos());
+        gramETSISI.imprimirGrafo();
+        gramETSISI.mostrarAmigos("b");
     }
 }
