@@ -143,20 +143,63 @@ public class GramETSISI {
 
     public int contarGrupos(){
         int numGrupos=0;
+        boolean[] visitados = new boolean[numVertices];
         for (int i = 0; i < numVertices; i++) {
-            boolean tieneamigos= false;
-            int j=0;
-            while (!tieneamigos&& j<numVertices){
-                if (matrizAdy[i][j]){
-                    tieneamigos=true;
-                }
-                j++;
-            }
-            if (tieneamigos){}
-            numGrupos++;
+            visitados[i] = false;
         }
+// Realizar recorrido desde cada vértice hasta que todos hayan sido visitados.
+        for (int i = 0; i < numVertices ; i++) {
+            if (!visitados[i]) {
+                numGrupos += profundidadAux(i, visitados, 1);
+            }
+        }
+
+
+
+
         return numGrupos;
     }
+
+   private int profundidadAux(int v, boolean[] visitados, int numGrupos) {
+        visitados[v] = true;
+
+        //System.out.print(v + " ");
+// Recorrido desde cada vértice adyacente a v que no haya sido visitado
+        //Iterador it = listasAdy[v].obtenerIterador();
+        for (int i = 0; i < numVertices; i++) { //Miro adyacencias
+            if (matrizAdy[v][i]) {
+                if (!visitados[i]){
+                    //System.out.println("Miro adyacencias del: "+i);
+                    profundidadAux(i,visitados,1);
+
+            }
+            }
+        }
+       return numGrupos;
+    }
+
+/*
+
+  private int profundidadAux(int v, boolean[] visitados, int numGrupos) {
+      visitados[v] = true;
+      System.out.print(v + " ");
+// Recorrido desde cada vértice adyacente a v que no haya sido visitado
+      //Iterador it = listasAdy[v].obtenerIterador();
+
+      for (int i = 0; i < numVertices-1; i++) {
+
+
+      int adyacente = i+1;
+      if (!visitados[adyacente]){
+          profundidadAux(adyacente, visitados,numGrupos+1);
+      }}
+        return numGrupos;
+  }*/
+
+
+
+
+
 
     public void imprimirGrafo() {
         System.out.println("Contenido de la matriz: ");
