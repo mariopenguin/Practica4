@@ -105,7 +105,7 @@ public class GramETSISI {
         int i =0;
         while (!encontrado && i<numVertices){
             if (contactos[i].getNombre().equalsIgnoreCase(nombre)){
-                System.out.println("Nombre encontrado, ahora mostramos a sus amigos");
+                //System.out.println("Nombre encontrado, ahora mostramos a sus amigos");
                 encontrado=true;
                 for (int j = 0; j < numVertices; j++) {
                     if (matrizAdy[i][j]==true){
@@ -137,6 +137,7 @@ public class GramETSISI {
                 nombreMejorGrupo=contactos[i].getNombre();
             }
         }
+        contactos[numeroMejorGrupo].mostrarPersona();
         mostrarAmigos(nombreMejorGrupo);
         //Una vez que hemos recorrido toda la array,
     }
