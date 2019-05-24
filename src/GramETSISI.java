@@ -107,6 +107,7 @@ public class GramETSISI {
             if (contactos[i].getNombre().equalsIgnoreCase(nombre)){
                 //System.out.println("Nombre encontrado, ahora mostramos a sus amigos");
                 encontrado=true;
+                contactos[i].mostrarPersona();
                 for (int j = 0; j < numVertices; j++) {
                     if (matrizAdy[i][j]==true){
                         contactos[j].mostrarPersona();
@@ -120,7 +121,7 @@ public class GramETSISI {
         }
 
     }
-
+/*
     public void mayorGrupo(){
         int numeroMejorGrupo;
         String nombreMejorGrupo="";
@@ -141,6 +142,55 @@ public class GramETSISI {
         mostrarAmigos(nombreMejorGrupo);
         //Una vez que hemos recorrido toda la array,
     }
+        */ public void mayorGrupo() {
+            boolean[] visitados = new boolean[numVertices];
+            for (int i = 0; i < numVertices; i++) {
+                visitados[i] = false;
+            }
+            int mayor=0; int actual=0; int posMayorGrupo =0;
+            for (int i = 0; i < numVertices; i++) {
+                if (!visitados[i]) {
+                    actual = mayorGrupoRec(i,visitados,0);
+                    if (actual>mayor){
+                        mayor=actual;
+                        posMayorGrupo=i;
+                    }
+                }
+            }
+            mostrarAmigos(contactos[posMayorGrupo].getNombre());
+        }
+
+        private int mayorGrupoRec(int v,boolean[] visitados, int tamañoGrupo){
+            visitados[v] = true;
+            for (int i = 0; i < numVertices; i++) {
+                if (matrizAdy[v][i] && !visitados[i]){
+                    tamañoGrupo++;
+                    mayorGrupoRec(i,visitados,tamañoGrupo);
+                }
+            }
+            return tamañoGrupo;
+        }
+
+
+    private int profundidadAux(int v, boolean[] visitados, int numGrupos) {
+        visitados[v] = true;
+
+        //System.out.print(v + " ");
+// Recorrido desde cada vértice adyacente a v que no haya sido visitado
+        //Iterador it = listasAdy[v].obtenerIterador();
+        for (int i = 0; i < numVertices; i++) { //Miro adyacencias
+            if (matrizAdy[v][i] && !visitados[i]) {
+
+                    //System.out.println("Miro adyacencias del: "+i);
+                    profundidadAux(i,visitados,1);
+
+
+            }
+        }
+        return numGrupos;
+    }
+
+
 
     public int contarGrupos(){
         int numGrupos=0;
@@ -161,23 +211,7 @@ public class GramETSISI {
         return numGrupos;
     }
 
-   private int profundidadAux(int v, boolean[] visitados, int numGrupos) {
-        visitados[v] = true;
 
-        //System.out.print(v + " ");
-// Recorrido desde cada vértice adyacente a v que no haya sido visitado
-        //Iterador it = listasAdy[v].obtenerIterador();
-        for (int i = 0; i < numVertices; i++) { //Miro adyacencias
-            if (matrizAdy[v][i]) {
-                if (!visitados[i]){
-                    //System.out.println("Miro adyacencias del: "+i);
-                    profundidadAux(i,visitados,1);
-
-            }
-            }
-        }
-       return numGrupos;
-    }
 
 /*
 

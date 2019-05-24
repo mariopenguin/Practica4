@@ -39,12 +39,12 @@ public class Main {
         //gramETSISI.insertaArista(2,5);
         //gramETSISI.imprimirGrafo();
         //gramETSISI.mostrarAmigos("b");
-        System.out.println("---Mayor Grupo---");
+        //System.out.println("---Mayor Grupo---");
         gramETSISI.mayorGrupo();
-        System.out.println("Numero de grupos: "+gramETSISI.contarGrupos());
-        gramETSISI.imprimirGrafo();
+        //System.out.println("Numero de grupos: "+gramETSISI.contarGrupos());
+        //gramETSISI.imprimirGrafo();
        // gramETSISI.mostrarAmigos("Mario");
 
-        System.out.println("Numero de grupos "+gramETSISI.contarGrupos());
+        //System.out.println("Numero de grupos "+gramETSISI.contarGrupos());
     }
 }
