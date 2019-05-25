@@ -147,7 +147,7 @@ public class GramETSISI {
             for (int i = 0; i < numVertices; i++) {
                 visitados[i] = false;
             }
-            int mayor=0; int actual=0; int posMayorGrupo =0;
+            int mayor=0; int actual=0; int posMayorGrupo =3;
             for (int i = 0; i < numVertices; i++) {
                 if (!visitados[i]) {
                     actual = mayorGrupoRec(i,visitados,0);
