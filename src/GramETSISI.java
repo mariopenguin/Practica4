@@ -121,33 +121,13 @@ public class GramETSISI {
         }
 
     }
-/*
-    public void mayorGrupo(){
-        int numeroMejorGrupo;
-        String nombreMejorGrupo="";
-        numeroMejorGrupo=0;
-        for (int i = 0; i < numVertices; i++) {
-            int contador = 0;
-            for (int j = 0; j < numVertices; j++) {
-                if (matrizAdy[i][j]){
-                    contador++;
-                }
-            }
-            if (contador>numeroMejorGrupo){
-                numeroMejorGrupo=contador;
-                nombreMejorGrupo=contactos[i].getNombre();
-            }
-        }
-        contactos[numeroMejorGrupo].mostrarPersona();
-        mostrarAmigos(nombreMejorGrupo);
-        //Una vez que hemos recorrido toda la array,
-    }
-        */ public void mayorGrupo() {
+
+         public void mayorGrupo() {
             boolean[] visitados = new boolean[numVertices];
             for (int i = 0; i < numVertices; i++) {
                 visitados[i] = false;
             }
-            int mayor=0; int actual=0; int posMayorGrupo =3;
+            int mayor=0; int actual=0; int posMayorGrupo =0;
             for (int i = 0; i < numVertices; i++) {
                 if (!visitados[i]) {
                     actual = mayorGrupoRec(i,visitados,0);
@@ -159,7 +139,7 @@ public class GramETSISI {
             }
             mostrarAmigos(contactos[posMayorGrupo].getNombre());
         }
-
+        //Calculo el número de integrantes que tiene cada grupo, y lo devuelvo al final de la recursividad
         private int mayorGrupoRec(int v,boolean[] visitados, int tamañoGrupo){
             visitados[v] = true;
             for (int i = 0; i < numVertices; i++) {
@@ -180,11 +160,7 @@ public class GramETSISI {
         //Iterador it = listasAdy[v].obtenerIterador();
         for (int i = 0; i < numVertices; i++) { //Miro adyacencias
             if (matrizAdy[v][i] && !visitados[i]) {
-
-                    //System.out.println("Miro adyacencias del: "+i);
                     profundidadAux(i,visitados,1);
-
-
             }
         }
         return numGrupos;
@@ -204,37 +180,8 @@ public class GramETSISI {
                 numGrupos += profundidadAux(i, visitados, 1);
             }
         }
-
-
-
-
         return numGrupos;
     }
-
-
-
-/*
-
-  private int profundidadAux(int v, boolean[] visitados, int numGrupos) {
-      visitados[v] = true;
-      System.out.print(v + " ");
-// Recorrido desde cada vértice adyacente a v que no haya sido visitado
-      //Iterador it = listasAdy[v].obtenerIterador();
-
-      for (int i = 0; i < numVertices-1; i++) {
-
-
-      int adyacente = i+1;
-      if (!visitados[adyacente]){
-          profundidadAux(adyacente, visitados,numGrupos+1);
-      }}
-        return numGrupos;
-  }*/
-
-
-
-
-
 
     public void imprimirGrafo() {
         System.out.println("Contenido de la matriz: ");
