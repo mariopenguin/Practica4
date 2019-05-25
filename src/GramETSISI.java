@@ -121,12 +121,15 @@ public class GramETSISI {
         }
 
     }
-
+         private boolean[] rellenarArray(boolean[] visitados){
+             for (int i = 0; i < numVertices; i++) {
+                 visitados[i] = false;
+             }
+             return visitados;
+         }
          public void mayorGrupo() {
             boolean[] visitados = new boolean[numVertices];
-            for (int i = 0; i < numVertices; i++) {
-                visitados[i] = false;
-            }
+            visitados = rellenarArray(visitados);
             int mayor=0; int actual=0; int posMayorGrupo =0;
             for (int i = 0; i < numVertices; i++) {
                 if (!visitados[i]) {
@@ -137,7 +140,19 @@ public class GramETSISI {
                     }
                 }
             }
-            mostrarAmigos(contactos[posMayorGrupo].getNombre());
+             visitados = rellenarArray(visitados);
+
+             mostrarMayorGrupoRec(posMayorGrupo,visitados);
+        }
+
+        private void mostrarMayorGrupoRec(int v, boolean[] visitados){
+            for (int i = 0; i < numVertices; i++) {
+                if (matrizAdy[v][i] && !visitados[i]){
+                    visitados[v] = true;
+                    contactos[i].mostrarPersona();
+                    mostrarMayorGrupoRec(i,visitados);
+                }
+            }
         }
         //Calculo el número de integrantes que tiene cada grupo, y lo devuelvo al final de la recursividad
         private int mayorGrupoRec(int v,boolean[] visitados, int tamañoGrupo){
